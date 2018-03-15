@@ -9,21 +9,19 @@ class App extends Component {
         };
     }
 
-    // setStateを呼ぶことによってrenderが呼ばれることになる
-    handleMouseOver(){
-        this.setState({ name: 'Bob'});
-    }
-
-    handleMouseOut(){
-        this.setState({ name: 'Mike'});
+    handleNameChange(name){
+        this.setState({ name });
     }
 
     render() {
         return (
-            <div
-                onMouseOver={() => this.handleMouseOver()}
-                onMouseOut={() => this.handleMouseOut()}
-            >
+            <div>
+                <input
+                    type="text"
+                    value={this.state.name}
+                    onChange={(e) => this.handleNameChange(e.target.value)}
+                />
+                <button onClick={() => this.handleNameChange('Bob')}>I am Bob</button>
                 <Greeting name = {this.state.name} />
             </div>
         );
